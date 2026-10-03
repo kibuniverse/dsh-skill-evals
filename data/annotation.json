@@ -1,0 +1,10 @@
+{
+  "status": "seed-labels-require-human-review",
+  "selectionCases": 80,
+  "development": 40,
+  "holdout": 40,
+  "tasks": 20,
+  "source": "Authored local fixtures; not actual user traffic",
+  "split": "Two paraphrases per family remain in the same split",
+  "grading": "Task tests and expected artifacts are never copied into agent workspace"
+}

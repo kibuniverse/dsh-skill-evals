@@ -1,0 +1,74 @@
+[
+  {
+    "name": "code-fix",
+    "description": "Fix defects in existing JavaScript or TypeScript code.",
+    "whenToUse": "修复已有代码的行为错误。",
+    "content": "Read the task and existing code before editing. Preserve exports and unaffected behavior. Handle boundary values, avoid mutating inputs unless requested, and check the corrected behavior. Deliver the requested code file rather than only an explanation."
+  },
+  {
+    "name": "code-review",
+    "description": "Review a code change or source file for concrete bugs without editing it.",
+    "whenToUse": "用户要求审查、指出问题而不是修改代码。",
+    "content": "Read the entire target and identify concrete failure cases. Distinguish bugs from style preferences. Honor requests not to edit. Provide the requested report with defect class, location and a reproducible explanation; do not invent issues."
+  },
+  {
+    "name": "unit-test",
+    "description": "Design and write behavior tests for existing code.",
+    "whenToUse": "用户明确要求编写测试。",
+    "content": "Test observable behavior, including ordinary inputs and boundaries. Assert expected outputs independently of implementation. Do not change production behavior to make tests pass. Use the test framework already present."
+  },
+  {
+    "name": "csv-summary",
+    "description": "Read CSV files and compute numeric summaries or grouped statistics.",
+    "whenToUse": "对 CSV 数据汇总、分组或计算统计量。",
+    "content": "Read the CSV header and all records. Interpret numbers numerically, preserve quoted fields, and distinguish sums from means. Handle missing values according to the task. Write the requested JSON artifact with numeric values, and verify totals."
+  },
+  {
+    "name": "json-validate",
+    "description": "Validate JSON data against a supplied schema and report errors.",
+    "whenToUse": "根据 schema 检查 JSON 是否有效。",
+    "content": "Read both data and schema. Check required properties, types, ranges and additional-property rules. Report valid as a boolean and meaningful errors naming failing properties. Never repair data unless requested. Save the validation result in the requested file."
+  },
+  {
+    "name": "file-report",
+    "description": "Turn local facts, logs or structured data into a concise saved report.",
+    "whenToUse": "根据本地资料生成报告文件。",
+    "content": "Inspect all supplied sources. Compute claims from the facts rather than guessing. Preserve requested field names and numeric types. Keep the report grounded in source records and write it at the specified path."
+  },
+  {
+    "name": "slides-create",
+    "description": "Create a new presentation deck from an outline or requirements.",
+    "whenToUse": "创建新的幻灯片或演示文稿。",
+    "content": "Determine audience and outline, create a new deck with readable layouts, and verify exported slides. Do not overwrite an existing deck unless requested."
+  },
+  {
+    "name": "slides-edit",
+    "description": "Edit an existing presentation while preserving unrelated slides and styling.",
+    "whenToUse": "编辑已有 PPT 或演示文稿。",
+    "content": "Inspect the existing deck. Make the requested localized changes, preserve unrelated elements and slides, and verify the saved presentation."
+  },
+  {
+    "name": "pdf-read",
+    "description": "Extract text, tables or facts from an existing PDF.",
+    "whenToUse": "读取或提取现有 PDF 内容。",
+    "content": "Inspect the PDF and identify the relevant pages. Extract content accurately, verify tables against page appearance, and cite the source pages."
+  },
+  {
+    "name": "pdf-create",
+    "description": "Create and format a new PDF document.",
+    "whenToUse": "生成新的 PDF 文件。",
+    "content": "Prepare content, choose readable typography, export the PDF and inspect page rendering for clipping or layout defects."
+  },
+  {
+    "name": "calendar-lark",
+    "description": "Create, change or inspect Feishu/Lark calendar events.",
+    "whenToUse": "用户要求操作飞书日历。",
+    "content": "Resolve the intended calendar and timezone. Verify dates and attendees. Follow user authorization before sending invitations; verify the final event state."
+  },
+  {
+    "name": "calendar-google",
+    "description": "Create, change or inspect Google Calendar events.",
+    "whenToUse": "用户要求操作 Google Calendar。",
+    "content": "Resolve the intended Google calendar and timezone. Verify dates and attendees and inspect the resulting event. Do not substitute another calendar provider."
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Eval token prices, one currency per million tokens",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["typesafeInput", "typesafeOutput", "mainInput", "mainOutput", "mainCached"],
+  "properties": {
+    "typesafeInput": { "type": "number", "minimum": 0 },
+    "typesafeOutput": { "type": "number", "minimum": 0 },
+    "mainInput": { "type": "number", "minimum": 0 },
+    "mainOutput": { "type": "number", "minimum": 0 },
+    "mainCached": { "type": "number", "minimum": 0 }
+  }
+}

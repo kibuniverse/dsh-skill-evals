@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.work/
+reports/
+.env
+.env.*
+!.env.example
+.DS_Store

@@ -1,0 +1,543 @@
+[
+  {
+    "id": "fix-1",
+    "kind": "fix",
+    "prompt": "修复 math.js 的 sum 函数。要求：空数组之和为 0，普通数组返回总和。 保持 export 和函数名称，保存到 math.js。",
+    "files": {
+      "math.js": "export function sum(xs) { return xs.reduce((a,b)=>a+b); }\n",
+      "package.json": "{\"type\":\"module\"}"
+    },
+    "required": [
+      [
+        "code-fix"
+      ]
+    ],
+    "grader": {
+      "file": "math.js",
+      "function": "sum",
+      "checks": [
+        {
+          "args": [
+            []
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "expected": 6
+        },
+        {
+          "args": [
+            [
+              -2,
+              2
+            ]
+          ],
+          "expected": 0
+        }
+      ],
+      "noMutation": true
+    }
+  },
+  {
+    "id": "fix-2",
+    "kind": "fix",
+    "prompt": "修复 math.js 的 clamp 函数。要求：将 x 限制在闭区间 [lo,hi]。 保持 export 和函数名称，保存到 math.js。",
+    "files": {
+      "math.js": "export function clamp(x, lo, hi) { return Math.min(lo, Math.max(x,hi)); }\n",
+      "package.json": "{\"type\":\"module\"}"
+    },
+    "required": [
+      [
+        "code-fix"
+      ]
+    ],
+    "grader": {
+      "file": "math.js",
+      "function": "clamp",
+      "checks": [
+        {
+          "args": [
+            5,
+            0,
+            10
+          ],
+          "expected": 5
+        },
+        {
+          "args": [
+            -3,
+            0,
+            10
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            12,
+            0,
+            10
+          ],
+          "expected": 10
+        }
+      ],
+      "noMutation": true
+    }
+  },
+  {
+    "id": "fix-3",
+    "kind": "fix",
+    "prompt": "修复 math.js 的 unique 函数。要求：保留首次出现的元素，保持原顺序，不修改输入。 保持 export 和函数名称，保存到 math.js。",
+    "files": {
+      "math.js": "export function unique(xs) { return xs.filter((x,i)=>xs.indexOf(x)!==i); }\n",
+      "package.json": "{\"type\":\"module\"}"
+    },
+    "required": [
+      [
+        "code-fix"
+      ]
+    ],
+    "grader": {
+      "file": "math.js",
+      "function": "unique",
+      "checks": [
+        {
+          "args": [
+            [
+              1,
+              1,
+              2,
+              3,
+              2
+            ]
+          ],
+          "expected": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              "a",
+              "b",
+              "a"
+            ]
+          ],
+          "expected": [
+            "a",
+            "b"
+          ]
+        }
+      ],
+      "noMutation": true
+    }
+  },
+  {
+    "id": "fix-4",
+    "kind": "fix",
+    "prompt": "修复 math.js 的 median 函数。要求：数值排序；偶数长度取中间两数均值；空数组返回 null；不修改输入。 保持 export 和函数名称，保存到 math.js。",
+    "files": {
+      "math.js": "export function median(xs) { const a=[...xs].sort(); return a[Math.floor(a.length/2)]; }\n",
+      "package.json": "{\"type\":\"module\"}"
+    },
+    "required": [
+      [
+        "code-fix"
+      ]
+    ],
+    "grader": {
+      "file": "math.js",
+      "function": "median",
+      "checks": [
+        {
+          "args": [
+            [
+              2,
+              10,
+              3
+            ]
+          ],
+          "expected": 3
+        },
+        {
+          "args": [
+            [
+              1,
+              4
+            ]
+          ],
+          "expected": 2.5
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": null
+        }
+      ],
+      "noMutation": true
+    }
+  },
+  {
+    "id": "review-1",
+    "kind": "review",
+    "prompt": "审查 source.js，不修改原文件。规格：first 应返回数组的第一个元素。 将问题保存到 review.json，格式为 {\"bugs\":[{\"class\":\"缺陷类别\",\"explanation\":\"具体原因\"}]}；类别使用 off-by-one、mutation、zero-division 或 missing-validation。",
+    "files": {
+      "source.js": "export function first(xs) { return xs[1]; }\n"
+    },
+    "required": [
+      [
+        "code-review"
+      ]
+    ],
+    "grader": {
+      "file": "review.json",
+      "class": "off-by-one",
+      "unchanged": "source.js"
+    }
+  },
+  {
+    "id": "review-2",
+    "kind": "review",
+    "prompt": "审查 source.js，不修改原文件。规格：sorted 应返回排序后的新数组，原数组不变。 将问题保存到 review.json，格式为 {\"bugs\":[{\"class\":\"缺陷类别\",\"explanation\":\"具体原因\"}]}；类别使用 off-by-one、mutation、zero-division 或 missing-validation。",
+    "files": {
+      "source.js": "export function sorted(xs) { return xs.sort((a,b)=>a-b); }\n"
+    },
+    "required": [
+      [
+        "code-review"
+      ]
+    ],
+    "grader": {
+      "file": "review.json",
+      "class": "mutation",
+      "unchanged": "source.js"
+    }
+  },
+  {
+    "id": "review-3",
+    "kind": "review",
+    "prompt": "审查 source.js，不修改原文件。规格：average 应在空数组时返回 null。 将问题保存到 review.json，格式为 {\"bugs\":[{\"class\":\"缺陷类别\",\"explanation\":\"具体原因\"}]}；类别使用 off-by-one、mutation、zero-division 或 missing-validation。",
+    "files": {
+      "source.js": "export function average(xs) { return xs.reduce((a,b)=>a+b,0)/xs.length; }\n"
+    },
+    "required": [
+      [
+        "code-review"
+      ]
+    ],
+    "grader": {
+      "file": "review.json",
+      "class": "zero-division",
+      "unchanged": "source.js"
+    }
+  },
+  {
+    "id": "review-4",
+    "kind": "review",
+    "prompt": "审查 source.js，不修改原文件。规格：ageNextYear 只接受非负数，其他输入应抛错。 将问题保存到 review.json，格式为 {\"bugs\":[{\"class\":\"缺陷类别\",\"explanation\":\"具体原因\"}]}；类别使用 off-by-one、mutation、zero-division 或 missing-validation。",
+    "files": {
+      "source.js": "export function ageNextYear(age) { return age+1; }\n"
+    },
+    "required": [
+      [
+        "code-review"
+      ]
+    ],
+    "grader": {
+      "file": "review.json",
+      "class": "missing-validation",
+      "unchanged": "source.js"
+    }
+  },
+  {
+    "id": "csv-1",
+    "kind": "csv",
+    "prompt": "读取 sales.csv，计算销售总额和按 region 分组的销售额，写入 summary.json，格式为 {\"total\":数字,\"byRegion\":{\"地区\":数字}}。",
+    "files": {
+      "sales.csv": "region,sales\nA,10\nB,20\nA,5\n"
+    },
+    "required": [
+      [
+        "csv-summary"
+      ]
+    ],
+    "grader": {
+      "file": "summary.json",
+      "expected": {
+        "total": 35,
+        "byRegion": {
+          "A": 15,
+          "B": 20
+        }
+      }
+    }
+  },
+  {
+    "id": "csv-2",
+    "kind": "csv",
+    "prompt": "读取 sales.csv，计算销售总额和按 region 分组的销售额，写入 summary.json，格式为 {\"total\":数字,\"byRegion\":{\"地区\":数字}}。",
+    "files": {
+      "sales.csv": "region,sales\nA,11\nB,21\nA,6\n"
+    },
+    "required": [
+      [
+        "csv-summary"
+      ]
+    ],
+    "grader": {
+      "file": "summary.json",
+      "expected": {
+        "total": 38,
+        "byRegion": {
+          "A": 17,
+          "B": 21
+        }
+      }
+    }
+  },
+  {
+    "id": "csv-3",
+    "kind": "csv",
+    "prompt": "读取 sales.csv，计算销售总额和按 region 分组的销售额，写入 summary.json，格式为 {\"total\":数字,\"byRegion\":{\"地区\":数字}}。",
+    "files": {
+      "sales.csv": "region,sales\nA,12\nB,22\nA,7\n"
+    },
+    "required": [
+      [
+        "csv-summary"
+      ]
+    ],
+    "grader": {
+      "file": "summary.json",
+      "expected": {
+        "total": 41,
+        "byRegion": {
+          "A": 19,
+          "B": 22
+        }
+      }
+    }
+  },
+  {
+    "id": "csv-4",
+    "kind": "csv",
+    "prompt": "读取 sales.csv，计算销售总额和按 region 分组的销售额，写入 summary.json，格式为 {\"total\":数字,\"byRegion\":{\"地区\":数字}}。",
+    "files": {
+      "sales.csv": "region,sales\nA,13\nB,23\nA,8\n"
+    },
+    "required": [
+      [
+        "csv-summary"
+      ]
+    ],
+    "grader": {
+      "file": "summary.json",
+      "expected": {
+        "total": 44,
+        "byRegion": {
+          "A": 21,
+          "B": 23
+        }
+      }
+    }
+  },
+  {
+    "id": "json-1",
+    "kind": "json",
+    "prompt": "根据 schema.json 验证 data.json，不修改输入文件，结果保存到 validation.json：{\"valid\":布尔值,\"errors\":[错误说明]}。错误应指出不合规的字段。",
+    "files": {
+      "schema.json": "{\"type\": \"object\", \"required\": [\"name\", \"age\"], \"properties\": {\"name\": {\"type\": \"string\"}, \"age\": {\"type\": \"number\", \"minimum\": 0}}, \"additionalProperties\": false}",
+      "data.json": "{\"name\": \"Ada\", \"age\": 25}"
+    },
+    "required": [
+      [
+        "json-validate"
+      ]
+    ],
+    "grader": {
+      "file": "validation.json",
+      "valid": true,
+      "field": null,
+      "unchanged": [
+        "data.json",
+        "schema.json"
+      ]
+    }
+  },
+  {
+    "id": "json-2",
+    "kind": "json",
+    "prompt": "根据 schema.json 验证 data.json，不修改输入文件，结果保存到 validation.json：{\"valid\":布尔值,\"errors\":[错误说明]}。错误应指出不合规的字段。",
+    "files": {
+      "schema.json": "{\"type\": \"object\", \"required\": [\"name\", \"age\"], \"properties\": {\"name\": {\"type\": \"string\"}, \"age\": {\"type\": \"number\", \"minimum\": 0}}, \"additionalProperties\": false}",
+      "data.json": "{\"name\": \"Ada\", \"age\": -1}"
+    },
+    "required": [
+      [
+        "json-validate"
+      ]
+    ],
+    "grader": {
+      "file": "validation.json",
+      "valid": false,
+      "field": "age",
+      "unchanged": [
+        "data.json",
+        "schema.json"
+      ]
+    }
+  },
+  {
+    "id": "json-3",
+    "kind": "json",
+    "prompt": "根据 schema.json 验证 data.json，不修改输入文件，结果保存到 validation.json：{\"valid\":布尔值,\"errors\":[错误说明]}。错误应指出不合规的字段。",
+    "files": {
+      "schema.json": "{\"type\": \"object\", \"required\": [\"name\", \"age\"], \"properties\": {\"name\": {\"type\": \"string\"}, \"age\": {\"type\": \"number\", \"minimum\": 0}}, \"additionalProperties\": false}",
+      "data.json": "{\"name\": 12, \"age\": 25}"
+    },
+    "required": [
+      [
+        "json-validate"
+      ]
+    ],
+    "grader": {
+      "file": "validation.json",
+      "valid": false,
+      "field": "name",
+      "unchanged": [
+        "data.json",
+        "schema.json"
+      ]
+    }
+  },
+  {
+    "id": "json-4",
+    "kind": "json",
+    "prompt": "根据 schema.json 验证 data.json，不修改输入文件，结果保存到 validation.json：{\"valid\":布尔值,\"errors\":[错误说明]}。错误应指出不合规的字段。",
+    "files": {
+      "schema.json": "{\"type\": \"object\", \"required\": [\"name\", \"age\"], \"properties\": {\"name\": {\"type\": \"string\"}, \"age\": {\"type\": \"number\", \"minimum\": 0}}, \"additionalProperties\": false}",
+      "data.json": "{\"age\": 25}"
+    },
+    "required": [
+      [
+        "json-validate"
+      ]
+    ],
+    "grader": {
+      "file": "validation.json",
+      "valid": false,
+      "field": "name",
+      "unchanged": [
+        "data.json",
+        "schema.json"
+      ]
+    }
+  },
+  {
+    "id": "report-1",
+    "kind": "report",
+    "prompt": "根据 facts.json 生成 report.json，包含 project、total、completed、pending、blocked；total 是后三项之和。不要添加没有来源的数据。",
+    "files": {
+      "facts.json": "{\"project\": \"Project 1\", \"completed\": 5, \"pending\": 2, \"blocked\": 1}"
+    },
+    "required": [
+      [
+        "file-report"
+      ]
+    ],
+    "grader": {
+      "file": "report.json",
+      "expected": {
+        "project": "Project 1",
+        "total": 8,
+        "completed": 5,
+        "pending": 2,
+        "blocked": 1
+      }
+    }
+  },
+  {
+    "id": "report-2",
+    "kind": "report",
+    "prompt": "根据 facts.json 生成 report.json，包含 project、total、completed、pending、blocked；total 是后三项之和。不要添加没有来源的数据。",
+    "files": {
+      "facts.json": "{\"project\": \"Project 2\", \"completed\": 6, \"pending\": 2, \"blocked\": 1}"
+    },
+    "required": [
+      [
+        "file-report"
+      ]
+    ],
+    "grader": {
+      "file": "report.json",
+      "expected": {
+        "project": "Project 2",
+        "total": 9,
+        "completed": 6,
+        "pending": 2,
+        "blocked": 1
+      }
+    }
+  },
+  {
+    "id": "report-3",
+    "kind": "report",
+    "prompt": "根据 facts.json 生成 report.json，包含 project、total、completed、pending、blocked；total 是后三项之和。不要添加没有来源的数据。",
+    "files": {
+      "facts.json": "{\"project\": \"Project 3\", \"completed\": 7, \"pending\": 2, \"blocked\": 1}"
+    },
+    "required": [
+      [
+        "file-report"
+      ]
+    ],
+    "grader": {
+      "file": "report.json",
+      "expected": {
+        "project": "Project 3",
+        "total": 10,
+        "completed": 7,
+        "pending": 2,
+        "blocked": 1
+      }
+    }
+  },
+  {
+    "id": "report-4",
+    "kind": "report",
+    "prompt": "根据 facts.json 生成 report.json，包含 project、total、completed、pending、blocked；total 是后三项之和。不要添加没有来源的数据。",
+    "files": {
+      "facts.json": "{\"project\": \"Project 4\", \"completed\": 8, \"pending\": 2, \"blocked\": 1}"
+    },
+    "required": [
+      [
+        "file-report"
+      ]
+    ],
+    "grader": {
+      "file": "report.json",
+      "expected": {
+        "project": "Project 4",
+        "total": 11,
+        "completed": 8,
+        "pending": 2,
+        "blocked": 1
+      }
+    }
+  }
+]
