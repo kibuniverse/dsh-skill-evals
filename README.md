@@ -85,11 +85,13 @@ npm run eval:e2e -- --provider deepseek-official --model MODEL_ID --limit 1 --re
 
 ## 目录
 
-- `src/setup.ts`：固定提交导出与编译。
-- `src/component.ts`、`tests/plugin.test.ts`：真实 Cordis 插件入口与工程回归。
-- `src/sdk-runner.ts`、`src/runtime-plugin.ts`：SDK 子进程、冻结目录、实际模型请求捕获和离线 adapter。
-- `src/evaluate.ts`、`src/grader.ts`：逐次记录和 Agent 外评分器。
-- `src/metrics.ts`、`src/report.ts`：指标、参数回放和报告。
+- `src/cli.ts`、`src/commands/`：CLI 入口（校验与分发）与各命令实现（offline/selector/e2e/report）及共享 flag 定义。
+- `src/gate.ts`、`src/setup.ts`：运行前兼容门禁（导出、编译、SDK 冒烟）；SUT 固定提交导出与编译。
+- `src/component.ts`、`src/fixtures.ts`、`tests/plugin.test.ts`：进程内 Cordis 组件测试载体、跨进程共享离线夹具与工程回归。
+- `src/sdk-runner.ts`、`src/runtime-plugin.ts`、`src/captures.ts`：SDK 子进程运行器、评测运行时插件（冻结目录、请求捕获、预算、离线 adapter）与捕获分析。
+- `src/record.ts`、`src/evaluate.ts`、`src/grader.ts`：基线记录构造、live 评测编排（选择/任务）与 Agent 外评分器。
+- `src/metrics.ts`、`src/report.ts`：指标与参数回放、报告渲染（JSON/CSV/HTML）。
+- `src/types.ts`、`src/dataset.ts`、`src/io.ts`：全部 zod schema 与类型、数据装载、共享 IO 与环境白名单。
 - `data/selection.json`、`data/tasks.json`、`data/skills.json`：独立种子数据。
 - `docs/methodology.md`：评测依据和统计边界。
 - `docs/baseline.md`：此前原项目检查与本仓库结果的区别。

@@ -11,9 +11,10 @@
     "typecheck": "tsc --noEmit",
     "test": "tsx src/cli.ts setup && vitest run",
     "eval:offline": "tsx src/cli.ts offline",
-    "eval:selector": "tsx src/cli.ts selector",
-    "eval:e2e": "tsx src/cli.ts e2e",
+    "eval:selector": "tsx --env-file-if-exists=.env src/cli.ts selector",
+    "eval:e2e": "tsx --env-file-if-exists=.env src/cli.ts e2e",
     "report": "tsx src/cli.ts report",
+    "format": "oxfmt src tests",
     "build": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
@@ -37,6 +38,7 @@
   },
   "devDependencies": {
     "@types/node": "22.19.0",
+    "oxfmt": "^0.71.0",
     "tsx": "4.20.6",
     "typescript": "5.9.3",
     "vitest": "5.0.2"

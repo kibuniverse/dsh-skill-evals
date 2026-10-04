@@ -10,7 +10,11 @@ it.each([
   ['e2e', ['--provider', 'deepseek-official', '--model', 'example'], 'TYPESAFE_API_KEY'],
 ])('refuses a %s run with missing configuration before any API call', async (command, flags, message) => {
   try {
-    await exec(process.execPath, [join(root, 'node_modules/tsx/dist/cli.mjs'), join(root, 'src/cli.ts'), command, ...flags], { cwd: root, env: scrubEnvironment(false) })
+    await exec(
+      process.execPath,
+      [join(root, 'node_modules/tsx/dist/cli.mjs'), join(root, 'src/cli.ts'), command, ...flags],
+      { cwd: root, env: scrubEnvironment(false) },
+    )
     throw new Error('Unexpected successful live run')
   } catch (error) {
     expect(error).toHaveProperty('code', 1)

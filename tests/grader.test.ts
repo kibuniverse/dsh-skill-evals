@@ -21,11 +21,21 @@ it.each(d.tasks)('accepts a saved correct artifact and rejects a damaged one for
       await writeFile(join(dir, file), fixes[Number(task.id.split('-')[1]) - 1]!)
     } else {
       expect((await gradeTask(task, dir)).passed).toBe(false)
-      const answer = task.kind === 'review' ? { bugs: [{ class: task.grader.class, explanation: 'Observed defect causes incorrect boundary behavior.' }] } : task.kind === 'json' ? { valid: task.grader.valid, errors: task.grader.valid ? [] : [String(task.grader.field) + ' violates schema'] } : task.grader.expected
+      const answer =
+        task.kind === 'review'
+          ? { bugs: [{ class: task.grader.class, explanation: 'Observed defect causes incorrect boundary behavior.' }] }
+          : task.kind === 'json'
+            ? {
+                valid: task.grader.valid,
+                errors: task.grader.valid ? [] : [String(task.grader.field) + ' violates schema'],
+              }
+            : task.grader.expected
       await writeFile(join(dir, file), JSON.stringify(answer))
     }
     expect(await gradeTask(task, dir)).toMatchObject({ passed: true })
     await writeFile(join(dir, file), 'broken artifact')
     expect((await gradeTask(task, dir)).passed).toBe(false)
-  } finally { await rm(dir, { recursive: true, force: true }) }
+  } finally {
+    await rm(dir, { recursive: true, force: true })
+  }
 })
